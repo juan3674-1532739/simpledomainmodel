@@ -144,10 +144,12 @@ open class Family {
     fileprivate var members : [Person] = []
     
     public init(spouse1: Person, spouse2: Person) {
-        spouse1._spouse = spouse2
-        spouse2._spouse = spouse1
-        self.members.append(spouse1)
-        self.members.append(spouse2)
+        if spouse1._spouse == nil && spouse2._spouse == nil {
+            spouse1._spouse = spouse2
+            spouse2._spouse = spouse1
+            self.members.append(spouse1)
+            self.members.append(spouse2)
+        }
     }
     
     open func haveChild(_ child: Person) -> Bool {
